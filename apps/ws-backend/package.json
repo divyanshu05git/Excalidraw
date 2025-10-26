@@ -18,7 +18,8 @@
     "ws": "^8.18.3"
   },
   "devDependencies": {
-    "@repo/common-backend": "workspace:*"
+    "@repo/common-backend": "workspace:*",
+    "@repo/db":"workspace:*"
   },
   "keywords": [],
   "author": "",

@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "@repo/common-backend": "workspace:*",
-    "@repo/common": "workspace:*"
+    "@repo/common": "workspace:*",
+    "@repo/db":"workspace:*"
   },
   "keywords": [],
   "author": "",
