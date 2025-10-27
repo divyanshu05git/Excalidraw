@@ -1,6 +1,5 @@
 import express from "express";
 import jwt from "jsonwebtoken"
-import "dotenv/config";
 import { middleware } from "./middleware";
 import { JWT_SECRET } from "./config";
 import { CreateUserSchema } from "@repo/common/types"
