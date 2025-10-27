@@ -21,6 +21,16 @@ app.post("/signup",async(req,res)=>{
         })
     }
 
+    //check db already has this mail
+    const user = await prismaClient.user.findUnique({
+        where: { email: email },
+    });
+
+    if(user){
+        res.json({
+            message:"user already exist with this mail"
+        })
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -44,9 +54,18 @@ app.post("/signin",async(req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
 
-    res.json({
-        message:"Signed in"
-    })
+    try{
+        const user = await prismaClient.user.findUnique({
+            where: { email: email },
+        });
+
+        
+    }
+    catch(err){
+
+    }    
+
+    
 })
 
 app.post("/room",async(req,res)=>{
