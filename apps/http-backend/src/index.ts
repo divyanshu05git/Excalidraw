@@ -38,9 +38,7 @@ app.post("/signup",async(req,res)=>{
         data:{
             email:email,
             password:hashedPassword,
-            name:name,
-            photo:"",
-
+            name:name
         }
     })
 
@@ -59,10 +57,31 @@ app.post("/signin",async(req,res)=>{
             where: { email: email },
         });
 
-        
+        if(!user){
+            res.status(400).json({
+                message:"invald credentials"
+            })
+        }
+        else{
+            const passwordMatch=await bcrypt.compare(password,user.password);
+            if(!passwordMatch){
+                res.status(401).json({
+                    message:"Incorrect password"
+                })
+            }
+
+            const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "7d" });
+
+            res.json({
+                message:"signin successful",
+                token:token
+            })
+        }
     }
     catch(err){
-
+        res.json({
+            message:"could not signin"
+        })
     }    
 
     
