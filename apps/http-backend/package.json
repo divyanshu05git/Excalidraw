@@ -10,17 +10,19 @@
   },
   "dependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@repo/db":"workspace:*",
+    "@types/bcrypt": "^6.0.0",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.4",
     "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "@repo/common-backend": "workspace:*",
     "@repo/common": "workspace:*",
-    "@repo/db":"workspace:*"
+    "@repo/common-backend": "workspace:*"
   },
   "keywords": [],
   "author": "",
