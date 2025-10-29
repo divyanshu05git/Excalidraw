@@ -46,7 +46,8 @@ app.post("/signup",async(req,res)=>{
 
 
     res.json({
-        message:"signed up"
+        message:"signed up",
+        userId:user?.id
     })
 })
 
@@ -76,7 +77,8 @@ app.post("/signin",async(req,res)=>{
 
             res.json({
                 message:"signin successful",
-                token:token
+                token:token,
+                userId:user.id
             })
         }
     }
@@ -119,7 +121,27 @@ app.post("/room",middleware,async(req,res)=>{
 })
 
 app.get("/chats/:roomId",async(req,res)=>{
-    
+    try{
+        const roomId=Number(req.params.roomId);
+        const messages=await prismaClient.room.findMany({
+            where:{
+                id:roomId
+            },
+            orderBy: {
+                id: "desc"
+            },
+            take:50
+        })
+
+        res.json({
+            messages
+        })
+    }
+    catch(err){
+        res.json({
+            message:[]
+        })
+    }
 })
 
 app.listen(3001);
