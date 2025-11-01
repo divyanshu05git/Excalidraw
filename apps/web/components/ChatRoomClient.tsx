@@ -7,7 +7,7 @@ export function ChatRoomClient({
     messages,
     id
 }:{
-    messages :{message:string}
+    messages :{message:string}[];
     id : string
 }){
     const { socket, loading} = useSocket();
@@ -32,7 +32,7 @@ export function ChatRoomClient({
     },[socket,loading,id])
 
     return <div>
-        {messages.map(m => <div>{m.messages}</div>)}
+        {messages.map(m => <div>{m.message}</div>)}
 
         <input type="text" value={currentMessage} onChange={e=>{
             setCurrentMessage(e.target.value)
