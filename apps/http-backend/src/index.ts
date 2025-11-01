@@ -91,7 +91,7 @@ app.post("/signin",async(req,res)=>{
     
 })
 
-app.post("/room",middleware,async(req,res)=>{
+app.post("/room",middleware,async(req,res)=>{ 
     const parsedData = CreateRoomSchema.safeParse(req.body);
     if (!parsedData.success) {
         res.json({
@@ -141,6 +141,27 @@ app.get("/chats/:roomId",async(req,res)=>{
     catch(err){
         res.json({
             message:[]
+        })
+    }
+})
+
+app.get("/room/:slug",async(req,res)=>{
+    try{
+        const slug=req.params.slug;
+        console.log(slug)
+        const room=await prismaClient.room.findMany({
+            where:{
+                slug:slug
+            }    
+        })
+
+        res.json({
+           room
+        })
+    }
+    catch(err){
+        res.json({
+            message:""
         })
     }
 })
